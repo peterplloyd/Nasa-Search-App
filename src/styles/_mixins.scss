@@ -1,0 +1,28 @@
+@import 'mq.scss';
+
+@mixin primary-font {
+  font-family: $nasa-font;
+}
+
+@mixin font-size($size) {
+  font-size: calculateRem($size);
+}
+
+@mixin off-canvas {
+  left: -9999px;
+  position: absolute;
+}
+
+/* Font Styles */
+
+@mixin text-standard {
+  @include primary-font();
+  @include font-size(13);
+  font-weight: 700;
+  letter-spacing: 0.7px;
+}
+
+@mixin text-standard--light {
+  @include text-standard();
+  font-weight: 300;
+}

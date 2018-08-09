@@ -1,0 +1,25 @@
+@import "../../styles/helper.scss";
+
+.header {
+  position: relative;
+  width: 100%;
+  height: 100px;
+  background-color: l-color(brand-1);
+  display: flex;
+  justify-content: center;
+  margin-bottom: 3.375em;
+  border-bottom: 1px solid l-color(brand-5);
+
+  a {
+    text-align: center;
+    flex: 1 0 auto;
+  }
+}
+
+.logoContainer {
+  align-self: center;
+}
+
+.logo {
+  height: 80px;
+}

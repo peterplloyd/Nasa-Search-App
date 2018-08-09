@@ -1,0 +1,23 @@
+@font-face {
+  font-family: "Nasa";
+  font-weight: 300;
+  src: url("./nasa-light.woff2") format("woff2"),
+    url("./nasa-light.woff") format("woff"),
+    url("./nasa-light.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Nasa";
+  font-weight: 400;
+  src: url("./nasa-regular.woff2") format("woff2"),
+    url("./nasa-regular.woff") format("woff"),
+    url("./nasa-regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Nasa";
+  font-weight: bold;
+  src: url("./nasa-bold.woff2") format("woff2"),
+    url("./nasa-bold.woff") format("woff"),
+    url("./nasa-bold.ttf") format("truetype");
+}

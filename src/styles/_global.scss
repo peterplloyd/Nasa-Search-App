@@ -1,0 +1,44 @@
+@import "./normalize";
+@import "./helper";
+
+:global {
+  html {
+    overflow-y: scroll;
+  }
+
+  .linkD {
+    font-weight: 700;
+  }
+
+  * {
+    box-sizing: border-box;
+
+    &:before,
+    &:after {
+      box-sizing: border-box;
+    }
+  }
+
+  body {
+    padding-bottom: 2rem;
+    background-color: l-color(brand-4);
+    overflow-x: hidden;
+
+    &.modal {
+      overflow: visible;
+      position: fixed;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  ul {
+    list-style: none;
+  }
+
+  fieldset {
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+}

@@ -1,0 +1,28 @@
+$color-brand-1: #fff;
+$colour-brand-2: #000;
+$color-brand-3: #bbb;
+$color-brand-4: #012;
+$color-brand-5: #e1e1e1;
+$color-brand-6: #444;
+
+$colour-input-background: #fff;
+$global-max-height: 56px;
+$colour-input-text-inactive: #bbb;
+$colour-input-text-active: #474747;
+$input-height: $global-max-height;
+$input-font-size: 14px;
+$general-font-size: 14px;
+$global-max-width: 650px;
+$nasa-font: "Nasa";
+
+$colors: (
+  brand-1: $color-brand-1,
+  brand-2: $colour-brand-2,
+  brand-3: $color-brand-3,
+  brand-4: $color-brand-4,
+  brand-5: $color-brand-5,
+  brand-6: $color-brand-6,
+  input-background: $colour-input-background,
+  input-text-inactive: $colour-input-text-inactive,
+  input-text-active: $colour-input-text-active
+);

@@ -1,0 +1,12 @@
+@function l-color($id) {
+  @if not(map-has-key($colors, $id)) {
+    @error 'Color #{$id} not known';
+  }
+
+  @return map-get($colors, $id);
+}
+
+@function calculateRem($size) {
+  $remSize: $size / 16;
+  @return #{$remSize}rem;
+}
