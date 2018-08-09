@@ -1,0 +1,18 @@
+{
+    "parser": "babel-eslint",
+    "plugins": [
+        "import"
+    ],
+    "parserOptions": {
+        "ecmaVersion": 2017,
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "experimentalObjectRestSpread": true
+        }
+    },
+    "rules": {
+       "import/first": ["error", "absolute-first"],
+       "import/no-duplicates": "error",
+       "import/newline-after-import": "error"
+    }
+}
