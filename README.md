@@ -8,7 +8,7 @@ Nasa Search with Nasa API
 Clone into ~/user.name/sites/
 
 ```
-git clone 'https://github.com/peterplloyd/Nasa-Search-App/edit/master/README.md'
+git clone 'https://github.com/peterplloyd/Nasa-Search-App'
 ```
 
 ## Install
