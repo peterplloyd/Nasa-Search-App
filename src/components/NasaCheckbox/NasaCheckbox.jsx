@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from "react";
+import React, { Component } from "react";
 import styles from "./NasaCheckbox.scss";
 
 class NasaCheckbox extends Component {
@@ -18,20 +18,25 @@ class NasaCheckbox extends Component {
     const { isChecked } = this.state;
     const {
       searchHeader__container__checkbox__container,
-      searchHeader__container__checkbox__container__input
+      searchHeader__container__checkbox__container__input,
+      searchHeader__container__checkbox__container__label
     } = styles;
 
     return (
       <div className={searchHeader__container__checkbox__container}>
-        <label>
-          <input
-            className={searchHeader__container__checkbox__container__input}
-            id={mediaType}
-            type="checkbox"
-            value={label}
-            checked={isChecked}
-            onChange={this.toggleCheckboxChange}
-          />
+        <input
+          className={searchHeader__container__checkbox__container__input}
+          id={mediaType}
+          type="checkbox"
+          value={label}
+          checked={isChecked}
+          aria-checked={isChecked}
+          onChange={this.toggleCheckboxChange}
+        />
+        <label
+          htmlFor={mediaType}
+          className={searchHeader__container__checkbox__container__label}
+        >
           {label}
         </label>
       </div>

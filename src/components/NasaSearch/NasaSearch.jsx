@@ -12,15 +12,16 @@ import Close from "../../images/svg/close.svg";
 import {
   fetchDataAction,
   clearAction,
-  updateTextAction
-  //getVideoAction
+  updateTextAction,
+  getVideoAction
 } from "../../redux/actions/actions.js";
 
 @connect(
   store => {
     return {
       results: store.main.results,
-      text: store.main.text
+      text: store.main.text,
+      video: store.main.video
     };
   },
   dispatch => {
@@ -29,7 +30,6 @@ import {
         dispatch(fetchDataAction(payload, media)),
       clear: () => dispatch(clearAction()),
       updateText: payload => dispatch(updateTextAction(payload))
-      //getVideoAction: payload => dispatch(getVideoAction(payload))
     };
   }
 )
@@ -45,14 +45,8 @@ export default class NasaSearch extends Component {
     const image = document.querySelector("#Image").checked ? "image" : "";
     const video = document.querySelector("#Video").checked ? "video" : "";
     let media = `${image},${video}`;
-
     this.props.updateTextFromInput(this.props.text, media, false);
   }
-
-  /*getVideoAction(src) {
-    console.log("hello");
-    this.props.getVideoAction(src);
-  }*/
 
   clear() {
     this.props.updateText("");
@@ -67,40 +61,50 @@ export default class NasaSearch extends Component {
       resultHeader__container__link__img
     } = styles;
     let count = 0;
+
     if (this.props.results) {
       if (this.props.results.resultCollection.length > 0 && this.props.text) {
         return (
           <div className={resultHeader}>
-            {this.props.results.resultCollection.map((x, y) => {
+            {this.props.results.resultCollection.map(x => {
               count++;
               let photographer = x.data[0].photographer || "Nasa",
+                title = x.data[0].title || "Nasa Photo",
                 description = x.data[0].description || "",
                 src = x.links[0].href || "",
                 keywords = x.data[0].keywords || "No Tags",
                 mediaType = x.data[0].media_type || "",
                 nasaId = x.data[0].nasa_id || "";
-
               if (count <= Limit) {
                 if (mediaType === "image") {
                   return (
-                    <div id={nasaId} className={resultHeader__container}>
-                      <a class={resultHeader__container__link} href={src}>
+                    <div
+                      id={nasaId}
+                      key={`resultHeader-${count}`}
+                      className={resultHeader__container}
+                    >
+                      <a className={resultHeader__container__link} href={src}>
                         <img
                           className={resultHeader__container__link__img}
                           src={src}
                           alt={keywords[0]}
                         />
                       </a>
+                      <p>Title: {title}</p>
                       <p>Taken By: {photographer} </p>
                       <p>{description}</p>
                       <p>Tags: {keywords}</p>
                     </div>
                   );
                 } else {
-                  //this.getVideoAction(src);
                   return (
-                    <div id={nasaId} className={resultHeader__container}>
-                      <Player playsInline src={src} />
+                    <div
+                      id={nasaId}
+                      key={`resultHeader-${count}`}
+                      className={resultHeader__container}
+                    >
+                      <Player playsInline />
+                      <p>Title: {title}</p>
                       <p>Filmed By: {photographer} </p>
                       <p>{description}</p>
                       <p>Tags: {keywords}</p>
@@ -113,7 +117,7 @@ export default class NasaSearch extends Component {
         );
       } else {
         return (
-          <div className={result}>
+          <div className={resultHeader}>
             <p>sorry no results found!</p>
           </div>
         );
@@ -142,6 +146,8 @@ export default class NasaSearch extends Component {
             type="text"
             value={this.props.text ? decodeURIComponent(this.props.text) : ""}
             onChange={this.handleInputChange}
+            aria-required="true"
+            aria-describedby="placeholder"
             placeholder={'Please enter search term... e.g "Orion"'}
             onKeyPress={e => {
               e.key === "Enter" ? this.updateTextFromInput() : "";

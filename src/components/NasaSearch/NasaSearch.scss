@@ -23,7 +23,7 @@
 
     &__checkbox {
       display: flex;
-      padding: 0.5rem 2rem 2rem;
+      padding: 0.5rem 0rem 2rem;
     }
 
     &__input {
@@ -34,14 +34,14 @@
       input[type="text"] {
         padding: 1rem;
         flex: 1 1;
-        border: 2px solid l-color(brand-2);
+        border: 1px solid l-color(brand-6);
 
         &::placeholder {
           color: l-color(brand-3);
         }
 
         &:focus {
-          border: 1px solid l-color(brand-6);
+          border: 2px solid l-color(brand-2);
           outline: none;
         }
       }
@@ -50,7 +50,7 @@
         height: 54px;
         width: 54px;
         position: absolute;
-        right: 35px;
+        right: 10px;
         top: 0;
       }
 

@@ -11,11 +11,11 @@ const mainReducer = (state = initialState, action) => {
         ...state,
         results: action.payload
       };
-      case actionTypes.CLEAR_ACTION:
+    case actionTypes.CLEAR_ACTION:
       return {
         ...state,
         results: null,
-        text: '',
+        text: ""
       };
     case actionTypes.UPDATE_TEXT_ACTION:
       return {
