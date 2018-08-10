@@ -73,6 +73,7 @@ export default class NasaSearch extends Component {
           <div className={resultHeader}>
             {this.props.results.resultCollection.map((x, y) => {
               count++
+              let key = x.data
               let photographer = x.data[0].photographer || 'Nasa',
                 description = x.data[0].description || '',
                 src = x.links[0].href || '',
@@ -83,8 +84,12 @@ export default class NasaSearch extends Component {
               if (count <= Limit) {
                 if (mediaType === 'image') {
                   return (
-                    <div id={nasaId} className={resultHeader__container}>
-                      <a class={resultHeader__container__link} href={src}>
+                    <div
+                      id={nasaId}
+                      key={`resultHeader-${count}`}
+                      className={resultHeader__container}
+                    >
+                      <a className={resultHeader__container__link} href={src}>
                         <img
                           className={resultHeader__container__link__img}
                           src={src}
@@ -99,7 +104,11 @@ export default class NasaSearch extends Component {
                 } else {
                   //this.getVideoAction(src);
                   return (
-                    <div id={nasaId} className={resultHeader__container}>
+                    <div
+                      id={nasaId}
+                      key={`resultHeader-${count}`}
+                      className={resultHeader__container}
+                    >
                       <Player playsInline src={src} />
                       <p>Filmed By: {photographer} </p>
                       <p>{description}</p>
@@ -113,7 +122,7 @@ export default class NasaSearch extends Component {
         )
       } else {
         return (
-          <div className={result}>
+          <div className={resultHeader}>
             <p>sorry no results found!</p>
           </div>
         )
