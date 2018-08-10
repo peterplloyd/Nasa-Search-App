@@ -1,25 +1,25 @@
-import React, { Component, PropTypes } from "react";
-import styles from "./NasaCheckbox.scss";
+import React, { Component, PropTypes } from 'react'
+import styles from './NasaCheckbox.scss'
 
 class NasaCheckbox extends Component {
   state = {
-    isChecked: true
-  };
+    isChecked: true,
+  }
 
   toggleCheckboxChange = () => {
     this.setState(({ isChecked }) => ({
-      isChecked: !isChecked
-    }));
-  };
+      isChecked: !isChecked,
+    }))
+  }
 
   render() {
-    const { label } = this.props;
-    const { mediaType } = this.props;
-    const { isChecked } = this.state;
+    const { label } = this.props
+    const { mediaType } = this.props
+    const { isChecked } = this.state
     const {
       searchHeader__container__checkbox__container,
-      searchHeader__container__checkbox__container__input
-    } = styles;
+      searchHeader__container__checkbox__container__input,
+    } = styles
 
     return (
       <div className={searchHeader__container__checkbox__container}>
@@ -30,13 +30,14 @@ class NasaCheckbox extends Component {
             type="checkbox"
             value={label}
             checked={isChecked}
+            aria-checked={isChecked}
             onChange={this.toggleCheckboxChange}
           />
           {label}
         </label>
       </div>
-    );
+    )
   }
 }
 
-export default NasaCheckbox;
+export default NasaCheckbox
