@@ -4,11 +4,14 @@ $color-brand-3: #bbb;
 $color-brand-4: #012;
 $color-brand-5: #e1e1e1;
 $color-brand-6: #444;
+$color-brand-7: #ddd;
+$color-brand-8: #b8b8b8;
+$color-brand-9: #474747;
 
-$colour-input-background: #fff;
+$colour-input-background: $color-brand-1;
 $global-max-height: 56px;
-$colour-input-text-inactive: #bbb;
-$colour-input-text-active: #474747;
+$colour-input-text-inactive: $color-brand-3;
+$colour-input-text-active: $color-brand-9;
 $input-height: $global-max-height;
 $input-font-size: 14px;
 $general-font-size: 14px;
@@ -22,6 +25,9 @@ $colors: (
   brand-4: $color-brand-4,
   brand-5: $color-brand-5,
   brand-6: $color-brand-6,
+  brand-7: $color-brand-7,
+  brand-8: $color-brand-8,
+  brand-9: $color-brand-9,
   input-background: $colour-input-background,
   input-text-inactive: $colour-input-text-inactive,
   input-text-active: $colour-input-text-active
