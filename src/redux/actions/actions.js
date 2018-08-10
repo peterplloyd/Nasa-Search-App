@@ -3,7 +3,6 @@ import * as actionTypes from "./actionTypes";
 
 export function fetchDataAction(payload, media) {
   const searchQuery = `https://images-api.nasa.gov/search?q=${payload}&media_type=${media}`;
-
   return dispatch => {
     axios
       .get(searchQuery)
@@ -20,11 +19,20 @@ export function fetchDataAction(payload, media) {
 export function sanitizeData(payload) {
   return dispatch => {
     let sanitizedData = {};
+    let videoLinks = {};
     let resultCollection = payload.collection.items;
+
+      console.log(resultCollection);
+    resultCollection.map(x => {
+      axios.get(x.href).then(response => {
+        videoLinks[x.data[0].nasa_id] = response.data[0];
+      });
+    });
 
     sanitizedData = {
       ...sanitizedData,
-      resultCollection: resultCollection
+      resultCollection: resultCollection,
+      videoLinks: videoLinks
     };
     return dispatch(sanitizedDataAction(sanitizedData));
   };
@@ -41,18 +49,3 @@ export function clearAction() {
 export function updateTextAction(payload) {
   return { type: actionTypes.UPDATE_TEXT_ACTION, payload };
 }
-
-/*export function getVideoAction(payload) {
-  console.log(payload);
-  return dispatch => {
-    let sanitizedData = {};
-    let video = payload;
-
-    sanitizeData = {
-      ...sanitizedData,
-      video: video
-    };
-
-    return dispatch(sanitizedDataAction(sanitizedData));
-  };
-}*/
