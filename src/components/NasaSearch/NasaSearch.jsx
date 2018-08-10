@@ -1,62 +1,56 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { Player } from 'video-react'
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { Player } from "video-react";
 
-import Checkbox from '../NasaCheckbox'
-import Limit from '../../config/limit.js'
+import Checkbox from "../NasaCheckbox";
+import Limit from "../../config/limit.js";
 
-import styles from './NasaSearch.scss'
-import Search from '../../images/svg/search.svg'
-import Close from '../../images/svg/close.svg'
+import styles from "./NasaSearch.scss";
+import Search from "../../images/svg/search.svg";
+import Close from "../../images/svg/close.svg";
 
 import {
   fetchDataAction,
   clearAction,
   updateTextAction,
-  //getVideoAction
-} from '../../redux/actions/actions.js'
+  getVideoAction
+} from "../../redux/actions/actions.js";
 
 @connect(
   store => {
     return {
       results: store.main.results,
       text: store.main.text,
-    }
+      video: store.main.video
+    };
   },
   dispatch => {
     return {
       updateTextFromInput: (payload, media) =>
         dispatch(fetchDataAction(payload, media)),
       clear: () => dispatch(clearAction()),
-      updateText: payload => dispatch(updateTextAction(payload)),
-      //getVideoAction: payload => dispatch(getVideoAction(payload))
-    }
-  },
+      updateText: payload => dispatch(updateTextAction(payload))
+    };
+  }
 )
 export default class NasaSearch extends Component {
   constructor(props) {
-    super(props)
-    this.updateTextFromInput = this.updateTextFromInput.bind(this)
-    this.handleInputChange = this.handleInputChange.bind(this)
-    this.clear = this.clear.bind(this)
+    super(props);
+    this.updateTextFromInput = this.updateTextFromInput.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.clear = this.clear.bind(this);
   }
 
   updateTextFromInput() {
-    const image = document.querySelector('#Image').checked ? 'image' : ''
-    const video = document.querySelector('#Video').checked ? 'video' : ''
-    let media = `${image},${video}`
-
-    this.props.updateTextFromInput(this.props.text, media, false)
+    const image = document.querySelector("#Image").checked ? "image" : "";
+    const video = document.querySelector("#Video").checked ? "video" : "";
+    let media = `${image},${video}`;
+    this.props.updateTextFromInput(this.props.text, media, false);
   }
 
-  /*getVideoAction(src) {
-    console.log("hello");
-    this.props.getVideoAction(src);
-  }*/
-
   clear() {
-    this.props.updateText('')
-    this.props.clear()
+    this.props.updateText("");
+    this.props.clear();
   }
 
   renderResponse() {
@@ -64,25 +58,25 @@ export default class NasaSearch extends Component {
       resultHeader,
       resultHeader__container,
       resultHeader__container__link,
-      resultHeader__container__link__img,
-    } = styles
-    let count = 0
+      resultHeader__container__link__img
+    } = styles;
+    let count = 0;
+
     if (this.props.results) {
       if (this.props.results.resultCollection.length > 0 && this.props.text) {
         return (
           <div className={resultHeader}>
-            {this.props.results.resultCollection.map((x, y) => {
-              count++
-              let key = x.data
-              let photographer = x.data[0].photographer || 'Nasa',
-                description = x.data[0].description || '',
-                src = x.links[0].href || '',
-                keywords = x.data[0].keywords || 'No Tags',
-                mediaType = x.data[0].media_type || '',
-                nasaId = x.data[0].nasa_id || ''
-
+            {this.props.results.resultCollection.map(x => {
+              count++;
+              let photographer = x.data[0].photographer || "Nasa",
+                title = x.data[0].title || "Nasa Photo",
+                description = x.data[0].description || "",
+                src = x.links[0].href || "",
+                keywords = x.data[0].keywords || "No Tags",
+                mediaType = x.data[0].media_type || "",
+                nasaId = x.data[0].nasa_id || "";
               if (count <= Limit) {
-                if (mediaType === 'image') {
+                if (mediaType === "image") {
                   return (
                     <div
                       id={nasaId}
@@ -96,42 +90,43 @@ export default class NasaSearch extends Component {
                           alt={keywords[0]}
                         />
                       </a>
+                      <p>Title: {title}</p>
                       <p>Taken By: {photographer} </p>
                       <p>{description}</p>
                       <p>Tags: {keywords}</p>
                     </div>
-                  )
+                  );
                 } else {
-                  //this.getVideoAction(src);
                   return (
                     <div
                       id={nasaId}
                       key={`resultHeader-${count}`}
                       className={resultHeader__container}
                     >
-                      <Player playsInline src={src} />
+                      <Player playsInline />
+                      <p>Title: {title}</p>
                       <p>Filmed By: {photographer} </p>
                       <p>{description}</p>
                       <p>Tags: {keywords}</p>
                     </div>
-                  )
+                  );
                 }
               }
             })}
           </div>
-        )
+        );
       } else {
         return (
           <div className={resultHeader}>
             <p>sorry no results found!</p>
           </div>
-        )
+        );
       }
     }
   }
 
   handleInputChange(e) {
-    this.props.updateText(e.target.value)
+    this.props.updateText(e.target.value);
   }
 
   renderResults() {
@@ -141,21 +136,21 @@ export default class NasaSearch extends Component {
       searchHeader__container__input__svgSearch,
       searchHeader__container__input__svg,
       searchHeader__container__input__svgClose,
-      searchHeader__container__checkbox,
-    } = styles
+      searchHeader__container__checkbox
+    } = styles;
 
     return (
       <div className={searchHeader__container}>
         <div className={searchHeader__container__input}>
           <input
             type="text"
-            value={this.props.text ? decodeURIComponent(this.props.text) : ''}
+            value={this.props.text ? decodeURIComponent(this.props.text) : ""}
             onChange={this.handleInputChange}
             aria-required="true"
             aria-describedby="placeholder"
             placeholder={'Please enter search term... e.g "Orion"'}
             onKeyPress={e => {
-              e.key === 'Enter' ? this.updateTextFromInput() : ''
+              e.key === "Enter" ? this.updateTextFromInput() : "";
             }}
           />
           {this.props.text ? (
@@ -188,11 +183,11 @@ export default class NasaSearch extends Component {
         </div>
         {this.renderResponse()}
       </div>
-    )
+    );
   }
 
   render() {
-    const { searchHeader, searchHeader__title } = styles
+    const { searchHeader, searchHeader__title } = styles;
     return (
       <div className={searchHeader}>
         <div className={searchHeader__title}>
@@ -202,6 +197,6 @@ export default class NasaSearch extends Component {
         </div>
         {this.renderResults()}
       </div>
-    )
+    );
   }
 }

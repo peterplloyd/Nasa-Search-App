@@ -34,14 +34,14 @@
       input[type="text"] {
         padding: 1rem;
         flex: 1 1;
-        border: 2px solid l-color(brand-2);
+        border: 1px solid l-color(brand-6);
 
         &::placeholder {
           color: l-color(brand-3);
         }
 
         &:focus {
-          border: 1px solid l-color(brand-6);
+          border: 2px solid l-color(brand-2);
           outline: none;
         }
       }
