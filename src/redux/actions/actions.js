@@ -22,7 +22,6 @@ export function sanitizeData(payload) {
     let videoLinks = {};
     let resultCollection = payload.collection.items;
 
-      console.log(resultCollection);
     resultCollection.map(x => {
       axios.get(x.href).then(response => {
         videoLinks[x.data[0].nasa_id] = response.data[0];
