@@ -28,7 +28,7 @@ import {
       updateTextFromInput: (payload, media) =>
         dispatch(fetchDataAction(payload, media)),
       clear: () => dispatch(clearAction()),
-      updateText: payload => dispatch(updateTextAction(payload)),
+      updateText: payload => dispatch(updateTextAction(payload))
       //getVideoAction: payload => dispatch(getVideoAction(payload))
     };
   }
@@ -60,12 +60,17 @@ export default class NasaSearch extends Component {
   }
 
   renderResponse() {
-    const { result, resultContainer } = styles;
+    const {
+      resultHeader,
+      resultHeader__container,
+      resultHeader__container__link,
+      resultHeader__container__link__img
+    } = styles;
     let count = 0;
     if (this.props.results) {
       if (this.props.results.resultCollection.length > 0 && this.props.text) {
         return (
-          <div className={result}>
+          <div className={resultHeader}>
             {this.props.results.resultCollection.map((x, y) => {
               count++;
               let photographer = x.data[0].photographer || "Nasa",
@@ -78,9 +83,13 @@ export default class NasaSearch extends Component {
               if (count <= Limit) {
                 if (mediaType === "image") {
                   return (
-                    <div id={nasaId} className={resultContainer}>
-                      <a href={src}>
-                        <img src={src} alt={keywords[0]} />
+                    <div id={nasaId} className={resultHeader__container}>
+                      <a class={resultHeader__container__link} href={src}>
+                        <img
+                          className={resultHeader__container__link__img}
+                          src={src}
+                          alt={keywords[0]}
+                        />
                       </a>
                       <p>Taken By: {photographer} </p>
                       <p>{description}</p>
@@ -90,7 +99,7 @@ export default class NasaSearch extends Component {
                 } else {
                   //this.getVideoAction(src);
                   return (
-                    <div id={nasaId} className={resultContainer}>
+                    <div id={nasaId} className={resultHeader__container}>
                       <Player playsInline src={src} />
                       <p>Filmed By: {photographer} </p>
                       <p>{description}</p>
@@ -118,18 +127,17 @@ export default class NasaSearch extends Component {
 
   renderResults() {
     const {
-      search,
-      input,
-      searchSvg,
-      searchButton,
-      closeButton,
-      closeSvg,
-      checkbox
+      searchHeader__container,
+      searchHeader__container__input,
+      searchHeader__container__input__svgSearch,
+      searchHeader__container__input__svg,
+      searchHeader__container__input__svgClose,
+      searchHeader__container__checkbox
     } = styles;
 
     return (
-      <div className={search}>
-        <div className={input}>
+      <div className={searchHeader__container}>
+        <div className={searchHeader__container__input}>
           <input
             type="text"
             value={this.props.text ? decodeURIComponent(this.props.text) : ""}
@@ -140,16 +148,22 @@ export default class NasaSearch extends Component {
             }}
           />
           {this.props.text ? (
-            <a className={closeButton} onClick={this.clear}>
-              <Close className={closeSvg} />
+            <a
+              className={searchHeader__container__input__svg}
+              onClick={this.clear}
+            >
+              <Close className={searchHeader__container__input__svgClose} />
             </a>
           ) : (
-            <a className={searchButton} onClick={this.updateTextFromInput}>
-              <Search className={searchSvg} />
+            <a
+              className={searchHeader__container__input__svg}
+              onClick={this.updateTextFromInput}
+            >
+              <Search className={searchHeader__container__input__svgSearch} />
             </a>
           )}
         </div>
-        <div className={checkbox}>
+        <div className={searchHeader__container__checkbox}>
           <Checkbox
             label="Image"
             handleCheckboxChange={this.toggleCheckbox}
@@ -167,10 +181,10 @@ export default class NasaSearch extends Component {
   }
 
   render() {
-    const { container, title } = styles;
+    const { searchHeader, searchHeader__title } = styles;
     return (
-      <div className={container}>
-        <div className={title}>
+      <div className={searchHeader}>
+        <div className={searchHeader__title}>
           <h2>
             <strong>Nasa Search</strong>
           </h2>

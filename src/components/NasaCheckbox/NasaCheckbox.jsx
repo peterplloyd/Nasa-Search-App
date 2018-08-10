@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from "react";
+import styles from "./NasaCheckbox.scss";
 
 class NasaCheckbox extends Component {
   state = {
@@ -15,11 +16,16 @@ class NasaCheckbox extends Component {
     const { label } = this.props;
     const { mediaType } = this.props;
     const { isChecked } = this.state;
+    const {
+      searchHeader__container__checkbox__container,
+      searchHeader__container__checkbox__container__input
+    } = styles;
 
     return (
-      <div className="checkbox">
+      <div className={searchHeader__container__checkbox__container}>
         <label>
           <input
+            className={searchHeader__container__checkbox__container__input}
             id={mediaType}
             type="checkbox"
             value={label}
