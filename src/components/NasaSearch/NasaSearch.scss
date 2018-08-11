@@ -6,20 +6,21 @@
   flex-direction: column;
   @include primary-font();
   max-width: 850px;
-  width: 100%;
-  margin: 0 auto;
+  width: auto;
+  margin: 0 1rem;
+  padding: 0 1rem;
   background: l-color(brand-1);
   border: 1px solid l-color(brand-5);
-  padding: 2rem;
 
-  &__title {
-    padding: 0 2rem;
+  @media only screen and (min-device-width: 768px) {
+    width: 100%;
+    margin: 0 auto;
+    padding: 2rem 4rem;
   }
 
   &__container {
     flex: 1 1;
     flex-wrap: wrap;
-    padding: 0 2rem;
 
     &__checkbox {
       display: flex;
@@ -74,19 +75,39 @@
 .resultHeader {
   display: flex;
   flex: 1 1;
-  padding: 2rem;
-  margin: 0 2em 2em;
+  margin: 0;
+  padding: 0;
   background: l-color(brand-1);
   border: 2px solid l-color(brand-2);
   flex-direction: column;
 
+  @media only screen and (min-device-width: 768px) {
+    padding: 2rem;
+    margin: 0 2em 2em;
+  }
+
   &__container {
-    border: 1px solid l-color(brand-2);
-    margin: 0.625em;
-    padding: 0.625rem;
+    margin: 0;
+    padding: 0;
     justify-content: center;
     display: inline-flex;
     flex-direction: inherit;
+
+    @media only screen and (min-device-width: 768px) {
+      border: 1px solid l-color(brand-2);
+      margin: 0.625em 0.625em 2.25em;
+      padding: 0.625rem;
+    }
+
+    &__title {
+      margin-top: 1em;
+    }
+
+    &__photographer,
+    &__description,
+    &__video {
+      margin-top: 0;
+    }
 
     &__link {
       &__img {
@@ -95,14 +116,6 @@
         justify-content: center;
         width: 100%;
       }
-    }
-
-    ul {
-      padding-left: 0;
-    }
-
-    p {
-      margin-top: 0;
     }
   }
 }
