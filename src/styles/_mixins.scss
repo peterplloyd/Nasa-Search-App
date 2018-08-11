@@ -1,4 +1,4 @@
-@import 'mq.scss';
+@import "mq.scss";
 
 @mixin primary-font {
   font-family: $nasa-font;
@@ -12,8 +12,6 @@
   left: -9999px;
   position: absolute;
 }
-
-/* Font Styles */
 
 @mixin text-standard {
   @include primary-font();

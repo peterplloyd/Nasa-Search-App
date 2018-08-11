@@ -1,3 +1,3 @@
-import NasaCheckbox from './NasaCheckbox'
+import NasaCheckbox from "./NasaCheckbox";
 
-export default NasaCheckbox
+export default NasaCheckbox;
