@@ -10,7 +10,7 @@ const NasaLogo = ({ href, title, alt }) => {
     logoHeader__container,
     logoHeader__container__logo
   } = styles;
-  
+
   let headerElm;
 
   if (href) {

@@ -1,3 +1,3 @@
-import NasaLogo from './NasaLogo'
+import NasaLogo from "./NasaLogo";
 
-export default NasaLogo
+export default NasaLogo;

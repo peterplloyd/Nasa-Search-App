@@ -1,3 +1,3 @@
-import NasaSearch from './NasaSearch'
+import NasaSearch from "./NasaSearch";
 
-export default NasaSearch
+export default NasaSearch;
